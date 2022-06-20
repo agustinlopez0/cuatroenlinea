@@ -1,5 +1,5 @@
 # Cuatro en línea
-Esta es una version del conocido juego cuatro en línea escrito en PHP y utlizando el framework Laravel
+Esta es una version del conocido juego cuatro en línea escrito en PHP y utlizando el framework Laravel. Este repositorio es parte de un trabajo práctico de la materia Adaptación del ambiente de trabajo de 6to informática en el Instituto Politécnico Superior
 
 ## Dependencias y cómo instalarlas
 - DDEV desde su [sitio web](https://ddev.com/get-started/)
@@ -14,15 +14,26 @@ Para Windows
 choco install ddev 
 ```
 - Docker desde su [sitio web](https://docs.docker.com/desktop/)
-- Composer desde su [sitio web](Composer )
+- Composer desde el CLI de ddev
 ```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
+ddev composer install
 ```
 
 ## Iniciar el programa
+Ejecutar los siguientes comandos:
+
+Ejecutar el siguiente comando para configurar el proyecto, se recomienda dejar las opciones predeterminadas
+```
+# al configurar el proyecto se recomienda dejar las opciones predeterminadas
+ddev config
+
+# copiar el archivo de configuracion que nos da laravel por defecto
+cp .env.example .env
+
+# Generar una clave de encriptación con
+php artisan key:generate
+```
+Finalmente ingresando a [https://cuatroenlinea.ddev.site/jugar/1](https://cuatroenlinea.ddev.site/jugar/1) se podrá iniciar el programa
 
 <!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
