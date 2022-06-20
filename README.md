@@ -2,6 +2,11 @@
 Esta es una version del conocido juego cuatro en línea escrito en PHP y utlizando el framework Laravel. Este repositorio es parte de un trabajo práctico de la materia Adaptación del ambiente de trabajo de 6to informática en el Instituto Politécnico Superior
 
 ## Dependencias y cómo instalarlas
+- Primero hay que clonar el repositorio con:
+```
+git clone https://github.com/agustinlopez0/cuatroenlinea
+```
+
 - DDEV desde su [sitio web](https://ddev.com/get-started/)
 
 Para macOS/Linux
