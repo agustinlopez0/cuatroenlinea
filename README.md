@@ -21,6 +21,7 @@ choco install ddev
 - Docker desde su [sitio web](https://docs.docker.com/desktop/)
 - Composer desde el CLI de ddev
 ```
+# Ejecutar en la carpeta del proyecto
 ddev composer install
 ```
 
@@ -37,6 +38,9 @@ cp .env.example .env
 
 # Generar una clave de encriptación con
 php artisan key:generate
+
+# Iniciar el proyecto
+ddev start
 ```
 Finalmente ingresando a [https://cuatroenlinea.ddev.site/jugar/1](https://cuatroenlinea.ddev.site/jugar/1) se podrá iniciar el programa
 
