@@ -9,7 +9,7 @@ class ConectionTest extends TestCase
 {
     public function test_conection()
     {
-        $response = $this->get('/jugar/1');
+        $response = $this->get($this->url);
 
         $response->assertStatus(200);
     }
