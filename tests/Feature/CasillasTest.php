@@ -27,4 +27,15 @@ class CasillasTest extends TestCase
 
     }
 
+    public function test_overflow_x(){
+        $response = $this->get($this->url_overflow_x);
+
+        $response->assertStatus(500);
+    }
+    
+    public function test_overflow_y(){
+        $response = $this->get($this->url_overflow_y);
+
+        $response->assertStatus(500);
+    }
 }
