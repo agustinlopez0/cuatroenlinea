@@ -1,18 +1,20 @@
 <?php
 
 namespace Tests\Feature;
+namespace App;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 
-class ClassFichaTest extends TestCase {
+class FichaTest extends TestCase {
     
-    public function color_test() {
+    public function test_color() {
         $ficha_azul = new Ficha("azul");
-        $this->assertEquals($ficha_azul->get_color(), "azul");
-        
         $ficha_roja = new Ficha("rojo");
+
+
+        $this->assertEquals($ficha_azul->get_color(), "azul");
         $this->assertEquals($ficha_roja->get_color(), "rojo");
     }
 
