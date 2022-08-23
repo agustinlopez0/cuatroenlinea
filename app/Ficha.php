@@ -9,7 +9,7 @@ class Ficha {
         $this->color = $color;
     }
 
-	public function getColor(){
+	public function get_color(){
 		return $this->color;
 	}
 
