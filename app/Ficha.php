@@ -7,10 +7,10 @@ interface FichaInterface {
 }
 
 class Ficha implements FichaInterface {
-	protected $color;
+	protected string $color;
 
     public function __construct( string $color){
-        if( $color != '🟥' && $color != '🟦' ){
+        if( $color != '🟥' && $color != '🟦' && $color != '⬜'){
 			throw new \Exception("Solo se permiten fichas azules o rojas");
 		}
 

@@ -12,10 +12,12 @@ class FichaTest extends TestCase {
     public function test_color() {
         $ficha_azul = new Ficha("🟦");
         $ficha_roja = new Ficha("🟥");
+        $ficha_vacia = new Ficha("⬜");
 
 
         $this->assertEquals($ficha_azul->get_color(), "🟦");
         $this->assertEquals($ficha_roja->get_color(), "🟥");
+        $this->assertEquals($ficha_vacia->get_color(), "⬜");
     }
 
     public function test_exception_color(){
