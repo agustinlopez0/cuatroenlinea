@@ -9,15 +9,15 @@ interface FichaInterface {
 class Ficha implements FichaInterface {
 	protected $color;
 
-    public function __construct( $color ){
-        if( $color !== "🟥" && $color !== "🟦" ){
-			throw new \Exception("Solo se permiten fichas azules (🟦) o rojas (🟥)");
+    public function __construct( string $color){
+        if( $color != '🟥' && $color != '🟦' ){
+			throw new \Exception("Solo se permiten fichas azules o rojas");
 		}
-		
-		$this->$color = $color;
+
+		$this->color = $color;
     }
 
-	public function get_color(){
+	public function get_color() : string {
 		return $this->color;
 	}
 }
