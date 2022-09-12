@@ -37,10 +37,10 @@ class Tablero implements TableroInterface{
     */
 
     public function get_max_y() : int {
-        return $max_y;
+        return $this->max_y;
     }
     public function get_max_x() : int {
-        return $max_x;
+        return $this->max_x;
     }
 
     public function get_display() : Array {
