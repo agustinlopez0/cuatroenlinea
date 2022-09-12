@@ -106,7 +106,7 @@ class Tablero implements TableroInterface{
         }
     }
 
-    public function iniciar_tablero() : void {
+    public function iniciar_tablero( $historial = [] ) : void {
         $casilla_vacia = new Ficha('⬜');
 
         for($i = 0; $i <= $this->max_x; $i++){
@@ -117,6 +117,11 @@ class Tablero implements TableroInterface{
             } 
         }
 
+        if( $historial ){
+            for($i = 0; $i <= (count($historial) - 1); $i++ ){
+                $this->poner_ficha($historial[$i]);
+            }
+        }
     }
 
     public function mostrar_tablero() : void {
