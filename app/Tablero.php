@@ -13,6 +13,7 @@ interface TableroInterface {
     public function mostrar_tablero() :void;
     public function poner_ficha( int $col ) : void;
     public function quitar_ficha( int $col ) : Ficha;
+    public function undo() : void;
 }
 
 class Tablero implements TableroInterface{
@@ -90,15 +91,19 @@ class Tablero implements TableroInterface{
 
                 $this->display[$col][$i] = $vacio;
 
-                array_pop($this->historial);
-
                 return $res;
             }
 
         }
 
 		throw new \Exception("Sin fichas para eliminar");
-        
+    }
+
+    public function undo() : void {
+        $ultimo = array_pop( $this->historial );
+        if( $ultimo ){
+            $this->quitar_ficha( $ultimo );
+        }
     }
 
     public function iniciar_tablero() : void {

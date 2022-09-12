@@ -50,13 +50,13 @@ class TableroTest extends TestCase {
         $rojo = new Ficha("🟥");
 
         $res = [
-        [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$rojo , $rojo , $rojo , $vacio, $vacio, $vacio],
-        [$azul , $azul , $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$rojo , $azul , $rojo , $vacio, $vacio, $vacio]];
+            [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$rojo , $rojo , $rojo , $vacio, $vacio, $vacio],
+            [$azul , $azul , $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$rojo , $azul , $rojo , $vacio, $vacio, $vacio]];
 
         // $tablero->mostrar_tablero();
         $this->assertEquals($tablero->get_historial(), [0,1,2,1,5,6,6,6,2,1]);
@@ -85,16 +85,52 @@ class TableroTest extends TestCase {
         $rojo = new Ficha("🟥");
 
         $res = [
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
-        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio]];
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio]];
 
-        $tablero->mostrar_tablero();
         $this->assertEquals($tablero->get_display(), $res);
+    }
+
+    public function test_undo(){
+        $tablero = new Tablero();
+        $tablero->iniciar_tablero();
+
+        $tablero->poner_ficha(0);
+        $tablero->poner_ficha(1);
+        $tablero->poner_ficha(2);
+        $tablero->poner_ficha(1);
+        $tablero->poner_ficha(5);
+        $tablero->poner_ficha(6);
+        $tablero->poner_ficha(6);
+        $tablero->poner_ficha(6);
+        $tablero->poner_ficha(2);
+        $tablero->poner_ficha(1);
+        $tablero->undo();
+        $tablero->undo();
+        $tablero->undo();
+        $tablero->undo();
+
+        $vacio = new Ficha("⬜");
+        $azul = new Ficha("🟦");
+        $rojo = new Ficha("🟥");
+
+        $res = [
+            [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$rojo , $rojo , $vacio, $vacio, $vacio, $vacio],
+            [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$azul , $vacio, $vacio, $vacio, $vacio, $vacio],
+            [$rojo , $vacio, $vacio, $vacio, $vacio, $vacio]];
+
+        // $tablero->mostrar_tablero();
+        $this->assertEquals($tablero->get_display(), $res);
+        $this->assertEquals($tablero->get_historial(), [0,1,2,1,5,6]);
     }
 
     public function test_overflow_y(){
