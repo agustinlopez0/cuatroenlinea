@@ -5,16 +5,21 @@ namespace App;
 use App\Ficha;
 
 interface TableroInterface {
-    public function poner_ficha(Ficha $ficha, int $col) : void;
+    public function get_max_x() : int;
+    public function get_max_y() : int;
     public function iniciar_tablero() : void;
-    public function mostrar_tablero();
+    public function get_display() : Array;
+    public function get_historial() : Array;
+    public function mostrar_tablero() :void;
+    public function poner_ficha( int $col ) : void;
+    public function quitar_ficha( int $col ) : Ficha;
 }
 
-class Tablero {
+class Tablero implements TableroInterface{
     protected $display = [[]];
     protected $historial = [];
-    protected $max_x = 6;
-    protected $max_y = 5;
+    protected int $max_x = 6;
+    protected int $max_y = 5;
 
     /* 
     Display representa la forma gráfica del tablero
@@ -30,22 +35,22 @@ class Tablero {
     ]            Parte superior ->
     */
 
-    public function get_max_y(){
+    public function get_max_y() : int {
         return $max_y;
     }
-    public function get_max_x(){
+    public function get_max_x() : int {
         return $max_x;
     }
 
-    public function get_display(){
+    public function get_display() : Array {
         return $this->display;
     }
 
-    public function get_historial(){
+    public function get_historial() : Array {
         return $this->historial;
     }
 
-	public function poner_ficha( int $col ){
+	public function poner_ficha( int $col ) : void {
         
         if($col > $this->max_x || $col < 0)			    
             throw new \Exception("Overflow-X");
@@ -71,7 +76,32 @@ class Tablero {
         }
     }
 
-    public function iniciar_tablero(){
+    public function quitar_ficha( int $col ) : Ficha{ //Testear exception
+        if($col > $this->max_x || $col < 0)			    
+            throw new \Exception("Overflow-X");
+
+        $vacio = new Ficha('⬜');
+        $rojo = new Ficha('🟥');
+        $azul = new Ficha('🟦');
+
+        for($i = $this->max_y; $i >= 0; $i--){
+            if($this->display[$col][$i] != $vacio){
+                $res = $this->display[$col][$i];
+
+                $this->display[$col][$i] = $vacio;
+
+                array_pop($this->historial);
+
+                return $res;
+            }
+
+        }
+
+		throw new \Exception("Sin fichas para eliminar");
+        
+    }
+
+    public function iniciar_tablero() : void {
         $casilla_vacia = new Ficha('⬜');
 
         for($i = 0; $i <= $this->max_x; $i++){
@@ -84,7 +114,7 @@ class Tablero {
 
     }
 
-    public function mostrar_tablero(){
+    public function mostrar_tablero() : void {
         for($i = $this->max_y; $i >= 0; $i--){
             for($j = 0; $j <= $this->max_x; $j++){
                 echo ($this->display[$j][$i])->get_color();

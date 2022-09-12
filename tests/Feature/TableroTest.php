@@ -63,6 +63,40 @@ class TableroTest extends TestCase {
         $this->assertEquals($tablero->get_display(), $res);
     }
 
+    public function test_quitar_fichas(){
+        $tablero = new Tablero();
+        $tablero->iniciar_tablero();
+
+        $tablero->poner_ficha(0);
+        $tablero->poner_ficha(1);
+        $tablero->poner_ficha(2);
+        $tablero->poner_ficha(1);
+        $tablero->poner_ficha(5);
+        $tablero->poner_ficha(6);
+        $tablero->quitar_ficha(1);
+        $tablero->quitar_ficha(0);
+        $tablero->quitar_ficha(1);
+        $tablero->quitar_ficha(5);
+        $tablero->quitar_ficha(6);
+        $tablero->quitar_ficha(2);
+
+        $vacio = new Ficha("⬜");
+        $azul = new Ficha("🟦");
+        $rojo = new Ficha("🟥");
+
+        $res = [
+        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio ,$vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio],
+        [$vacio, $vacio, $vacio, $vacio, $vacio, $vacio]];
+
+        $tablero->mostrar_tablero();
+        $this->assertEquals($tablero->get_display(), $res);
+    }
+
     public function test_overflow_y(){
         $this->expectException(\Exception::class);
 
